@@ -1,13 +1,13 @@
-//create a class for a book that has a title, author, number of pages, language, published date and a read status
 class Book {
   constructor(
-    title = "Unknown",
+    title = "fdghdfdfh",
     author = "Unknown",
     pages = 0,
     language = "en",
     publishedDate = new Date(),
     readStatus = false
   ) {
+    this.id = Book.generateId();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -15,52 +15,153 @@ class Book {
     this.publishedDate = publishedDate;
     this.readStatus = readStatus;
   }
+
+  static generateId() {
+    return Math.random().toString(36).substring(2, 11);
+  }
 }
 
 //create a class for a library that has a name and an array of books
 class Library {
-  constructor(name) {
-    this.name = name;
-    this.books = [];
+  constructor() {
+    this.observers = [];
   }
 
-  //add a book to the library
-  addBook(book) {
-    if (!this.isInLibrary(newBook)) {
-      this.books.push(book);
-    }
-  }
+  // //add a book to the library
+  // addBook(book) {
+  //   if (!this.isInLibrary(book)) {
+  //     this.data.push(book);
+  //     this.notifyObservers(this.data);
+  //   }
+  // }
 
-  //remove a book from the library
-  removeBook(book) {
-    this.books = this.books.filter((b) => b !== book);
-  }
+  // //remove a book from the library
+  // removeBook(book) {
+  //   this.data = this.data.filter((b) => b !== book);
+  //   this.notifyObservers(this.data);
+  // }
 
   //change the read status of a book
   changeReadStatus(book) {
     book.readStatus = !book.readStatus;
+    this.notifyObservers(this.data);
   }
 
-  //list all the books in the library
-  listBooks() {
-    this.books.forEach((book) => {
-      console.log(`Title: ${book.title}`);
-      console.log(`Author: ${book.author}`);
-      console.log(`Pages: ${book.pages}`);
-      console.log(`Language: ${book.language}`);
-      console.log(`Published Date: ${book.publishedDate}`);
-      console.log(`Read Status: ${book.readStatus}`);
-      console.log("-----------------");
-    });
+  //add an observer
+  addObserver(observer) {
+    observer.id = this.observers.length;
+    this.observers.push(observer);
+  }
+
+  //remove an observer
+  removeObserver(observer) {
+    this.observers = this.observers.filter((obs) => obs !== observer);
+  }
+
+  //notify all observers
+  notifyObservers(data) {
+    this.observers.forEach((observer) => observer.refresh(data));
+  }
+
+  //check if a book is already in the library
+  isInLibrary(book) {
+    return this.observers.some(
+      (b) => b.title === book.title && b.author === book.author
+    );
+  }
+}
+
+class ItemsStore extends Library {
+  constructor() {
+    super();
+    this.data = [];
+  }
+
+  add(item) {
+    this.data.push(item);
+    super.notifyObservers(this.data);
+  }
+}
+
+class HTMLLibraryObserver {
+  constructor(elementId) {
+    this.element = document.getElementById(elementId);
+  }
+
+  refresh(data) {
+    this.element.innerHTML = data.reduce((acc, book) => {
+      return (
+        acc +
+        `
+        <div class="book">
+          <div class="delete-book" onclick="items.removeObserver(${book})">
+            X
+          </div>
+          <h2>${book.title}</h2>
+          <p>By: ${book.author}</p>
+          <p>Pages: ${book.pages}</p>
+          <p>Language: ${book.language}</p>
+          <p>Published: ${book.publishedDate}</p>
+          <p>Read Status: ${book.readStatus}</p>
+       
+
+          <div class="toggle-wrapper card">
+          <label class="toggle-container">
+          <input 
+          type="checkbox" 
+          class="myToggle" 
+              checked="${book.readStatus}" 
+              onclick="changeReadStatusItem(${JSON.stringify(book)})"
+            />
+            <span class="toggle-slider"></span>
+          </label>
+            <span class="toggle-slider" id="readStatusLabel">readed?</span>
+            </div>
+        </div>
+      `
+      );
+    }, "");
   }
 }
 
 //create a library and add some books
-const library = new Library("My Library");
-const book1 = new Book("Book1", "Author1", 300, "English", "01-01-2020", true);
-const book2 = new Book("Book2", "Author2", 400, "English", "01-01-2021", false);
-library.addBook(book1);
-library.addBook(book2);
+const items = new ItemsStore();
+const htmlLibraryObserver = new HTMLLibraryObserver("main-container");
 
-//list all the books in the library
-library.listBooks();
+items.addObserver(htmlLibraryObserver);
+
+function add(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const { title, author, pages, language, publishedDate, readStatus } =
+    form.elements;
+
+  items.add(
+    new Book(
+      title.value,
+      author.value || "Unspecified",
+      pages.value || "-",
+      language.value,
+      publishedDate.value || "-",
+      readStatus.checked
+    )
+  );
+
+  form.reset();
+  document.getElementById("dialog").close();
+}
+
+function handleDialog() {
+  const dialog = document.getElementById("dialog");
+  const openDialog = () => dialog.showModal();
+  const closeDialog = () => dialog.close();
+  if (!dialog.open) return openDialog();
+
+  return closeDialog();
+}
+
+function changeReadStatusItem(book) {
+  console.log(book);
+  items.changeReadStatus(book);
+}
