@@ -93,7 +93,7 @@ class HTMLLibraryObserver {
       return (
         acc +
         `
-        <div class="book">
+        <div class="book ${book.readStatus ? "readed-card" : ""}">
           <div class="delete-book" onclick="items.removeObserver(${book})">
             X
           </div>

@@ -147,6 +147,10 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.book.readed-card {
+  background-color: rgba(46, 204, 196, 0.2);
+}
+
 .delete-book {
   position: absolute;
   top: 10px;
