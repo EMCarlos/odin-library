@@ -126,19 +126,22 @@ body {
 }
 
 .book {
-  max-width: 450px;
+  min-height: 350px;
+  max-width: 300px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 25px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
   flex-direction: column;
 
-  justify-content: space-between;
+  justify-content: flex-start;
   font-size: 20px;
   color: #f2f2f2;
-  gap: var(--spacing-lg, 4px);
-  padding: var(--spacing-lg, 20px);
+  gap: 10px;
+  padding: 25px;
   line-height: 1.2;
 
   background-color: rgba(255, 255, 255, 0.1);
@@ -153,8 +156,8 @@ body {
 
 .delete-book {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
@@ -172,7 +175,7 @@ body {
   align-items: center;
 
   input:checked + .toggle-slider {
-    background-color: #2ecc71;
+    background-color: #2e80cc;
   }
 
   input:checked + .toggle-slider::before {
@@ -316,4 +319,13 @@ input:focus-visible {
 .toggle-wrapper.card {
   margin: 20px auto 10px 0;
   position: relative;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
