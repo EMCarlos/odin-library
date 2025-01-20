@@ -4,36 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <script src="./index.js" defer></script>
   <body>
-    <main>
-      <h1>My First Web Page</h1>
-      <p>My first paragraph.</p>
-      <p>My second paragraph.</p>
-      <p>My third paragraph.</p>
-      <p>My fourth paragraph.</p>
-      <p>My fifth paragraph.</p>
-      <p>My sixth paragraph.</p>
-      <p>My seventh paragraph.</p>
-      <p>My eighth paragraph.</p>
-      <p>My ninth paragraph.</p>
-      <p>My tenth paragraph.</p>
-      <p>My eleventh paragraph.</p>
-      <p>My twelfth paragraph.</p>
-      <p>My thirteenth paragraph.</p>
-      <p>My fourteenth paragraph.</p>
-      <p>My fifteenth paragraph.</p>
-      <p>My sixteenth paragraph.</p>
-      <p>My seventeenth paragraph.</p>
-      <p>My eighteenth paragraph.</p>
-      <p>My nineteenth paragraph.</p>
-      <p>My twentieth paragraph.</p>
-      <p>My twenty-first paragraph.</p>
-      <p>My twenty-second paragraph.</p>
-      <p>My twenty-third paragraph.</p>
-      <p>My twenty-fourth paragraph.</p>
-      <p>My twenty-fifth paragraph.</p>
-    </main>
+    <main class="wrapper">
+      <div class="button-container">
+        <button onclick="handleDialog()">+ Add Book</button>
+        <!-- <button onclick="sortBooks()">Sort Books</button> -->
+        <!-- <button onclick="filterBooks()">Filter Books</button> -->
+      </div>
+      
+      <section class="main-container" id="main-container"></main>
+
+        <dialog id="dialog">
+          <form id="form" onsubmit="add(event)">
+            <input type="text" id="title" placeholder="Title" required/>
+            <input type="text" id="author" placeholder="Author" pattern="[0-9]*" />
+            <input type="number" id="pages" placeholder="Pages" />
+            <select id="language" placeholder="Language">
+              <option value="English">English</option>
+              <option value="Mandarin Chinese">Mandarin Chinese</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="Standard Arabic">Standard Arabic</option>
+              <option value="Bengali">Bengali</option>
+              <option value="Russian">Russian</option>
+              <option value="Portuguese">Portuguese</option>
+              <option value="Indonesian">Indonesian</option>
+            </select>
+            <input
+            type="date"
+            id="publishedDate"
+            placeholder="Published Date"
+            />
+            <div class="toggle-wrapper">
+              <label class="toggle-container" for="readStatus">
+                <input
+                class="myToggle"
+                type="checkbox"
+                id="readStatus"
+                placeholder="Read Status"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-slider" id="readStatusLabel">read status</span>
+            </div>
+              <button type="submit" >Submit</button>
+          </form>
+          
+        </main>
+          
+    <script src="./index.js"></script>
   </body>
 </html>
