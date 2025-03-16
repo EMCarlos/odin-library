@@ -347,7 +347,7 @@ class LibraryView {
     this.bookList.innerHTML = books
       .map(
         (book, index) => `
-      <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
+      <article class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
         <div class="text-center mb-4 h-32 ${
           book.color
         } rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border border-gray-100">
@@ -378,7 +378,7 @@ class LibraryView {
         }" onclick="library.toggleRead('${book.title}')">
           ${book.read ? "Marked as Read" : "Mark as Read"}
         </button>
-      </div>
+      </article>
     `
       )
       .join("");
