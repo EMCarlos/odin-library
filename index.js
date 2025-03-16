@@ -257,7 +257,7 @@ class LibraryView {
     const saveButton = document.createElement("button");
     saveButton.id = "saveButton";
     saveButton.className =
-      "justify-center whitespace-nowrap rounded-md text-sm font-medium bg-green-600 text-white hover:bg-green-700 transition-all duration-300 h-10 px-4 py-2 flex items-center gap-2";
+      "w-full sm:w-auto justify-center whitespace-nowrap rounded-md text-sm font-medium bg-green-600 text-white hover:bg-green-700 transition-all duration-300 h-10 px-4 py-2 flex items-center gap-2";
     this.updateSaveButtonContent(saveButton);
     saveButton.onclick = () => this.handleSave();
     container.appendChild(saveButton);
@@ -276,7 +276,7 @@ class LibraryView {
           <polyline points="17 21 17 13 7 13 7 21"></polyline>
           <polyline points="7 3 7 8 15 8"></polyline>
         </svg>
-        Disable save to Local Storage
+        Disable Save in Local Storage
       `
       : `
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
@@ -284,7 +284,7 @@ class LibraryView {
           <polyline points="17 21 17 13 7 13 7 21"></polyline>
           <polyline points="7 3 7 8 15 8"></polyline>
         </svg>
-        Enable save to Local Storage
+        Enable Save in Local Storage
       `;
   }
 

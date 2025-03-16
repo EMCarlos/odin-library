@@ -18,7 +18,7 @@
       >
         <div class="relative w-full flex-row gap-4 flex items-center">
           <input
-            class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm sm:w-64"
+            class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm w-full sm:w-64"
             type="text"
             id="searchInput"
             placeholder="Search by title or author..."
@@ -38,14 +38,14 @@
           </select>
           <button
             id="sortOrder"
-            class="border border-input bg-gray-200 text-black font-medium px-4 py-2 rounded text-sm hover:bg-gray-200 transition-all duration-300"
+            class="border border-input bg-gray-200 text-black font-medium px-4 w-auto py-2 rounded text-sm hover:bg-gray-200 transition-all duration-300 hyphens-auto text-ellipsis overflow-hidden whitespace-nowrap overflow-ellipsis min-w-3xs"
             onclick="sortBooks()"
           >
             Sort (asc)
           </button>
         </div>
         <button
-          class="justify-center whitespace-nowrap rounded-md text-sm font-medium bg-black text-white hover:bg-gray-800 transition-all duration-300 h-10 px-4 py-2 flex items-center gap-2 sn:w-full"
+          class="justify-center whitespace-nowrap rounded-md text-sm font-medium bg-black text-white hover:bg-gray-800 transition-all duration-300 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
           onclick="openDialog()"
         >
           <svg
