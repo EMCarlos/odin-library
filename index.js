@@ -347,7 +347,13 @@ class LibraryView {
     this.bookList.innerHTML = books
       .map(
         (book, index) => `
-      <article class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
+      <article 
+        id="book-${index}"
+        data-index-number="${index}"
+        data-title="${book.title}"
+        data-author="${book.author}"
+        class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300"
+      >
         <div class="text-center mb-4 h-32 ${
           book.color
         } rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 border border-gray-100">
