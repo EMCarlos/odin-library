@@ -71,5 +71,3 @@ MIT License
 ## Author
 
 EMCarlos - [LinkedIn](https://www.linkedin.com/in/carlos-miquilena-castro-354359127/)
-
-Hola
